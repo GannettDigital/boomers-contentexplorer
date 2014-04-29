@@ -1,8 +1,8 @@
 'use strict';
 
 /* App Module */
-var mediaApp = angular.module('mediaApp', ['ngResource','ngRoute']);
+var assetApp = angular.module('assetApp', ['ngResource', 'ngRoute']);
 
-mediaApp.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/', {templateUrl: 'views/media-list.html',   controller: 'MediaListCtrl'});
+assetApp.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.when('/', { templateUrl: 'views/asset-list.html', controller: 'AssetListCtrl' });
 }]);
