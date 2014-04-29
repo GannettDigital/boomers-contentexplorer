@@ -2,68 +2,74 @@
 
 /* Controllers */
 
-mediaApp.controller('MediaListCtrl',function($scope,MediaService){
-    $scope.searchTerm = "Obama";
-    $scope.mediaType = "all";
+assetApp.controller('AssetListCtrl', function ($scope, assetService) {
+    $scope.searchTerm = "";
+    $scope.assetType = "text";
+    $scope.assetReturn = "10";
     $scope.filterTerm = "";
-    $scope.sortProp = "artistName";
+    $scope.sortProp = "";
     $scope.showFlag = false;
+    $scope.searchType = "1";
+    $scope.propertyType = "6";
+    $scope.siteType = "6";
+    $scope.agType = "6";
 
 
-    $scope.doSearch = function() {
-        var type = $scope.mediaType;
-        if ($scope.mediaType == "all") type = "";
-        MediaService.get({ keyword: $scope.searchTerm,propertyid: 1, rows: 50 }, function(response) {
-            $scope.mediaResults = response.results;
+
+    $scope.doSearch = function () {
+        var type = $scope.assetType;
+        var numrows = $scope.assetReturn;
+        if ($scope.assetType === "all") type = "";
+        assetService.get({
+            keyword: $scope.searchTerm, assettypename: type, propertyid: 1, rows: numrows, apiKey: 'special-key'
+        }, function (response) {
+            $scope.assetResults = response.results;
         });
     };
 
-    $scope.playVideo = function(item) {
-        $scope.showFlag = true;
-        $scope.url = item.previewUrl;
-        if (item.trackName != null)
-            $scope.title = item.trackName;
-        else
-            $scope.title = item.collectionName;
+    $scope.UpLoad = function () {
 
-        $scope.artist = item.artistName;
+        var ct = document.getElementById('list').value;
+        location.href = "http://localhost:53198/Handler.ashx?source=Search-" + ct;
+
     };
 
-    $scope.closeVideo = function() {
-        $scope.showFlag = false;
+    $scope.remaining = function () {
+        var count = 0;
+        angular.forEach($scope.assetResults, function (item) {
+            count += item.chkbx ? 1 : 0;
+
+        });
+        return count;
     };
 
-    $scope.selected = [];
-    var updateSelected = function(action, id) {
-        if (action == 'add' & $scope.selected.indexOf(id) == -1) $scope.selected.push(id);
-        if (action == 'remove' && $scope.selected.indexOf(id) != -1) $scope.selected.splice($scope.selected.indexOf(id), 1);
+    $scope.listtogaia = function () {
+        var count = "";
+        angular.forEach($scope.assetResults, function (item) {
+            if (item.chkbx ? 1 : 0)
+                count += item.assetId + ',';
+        });
+        var trim = count.replace(/(^\s*,)|(,\s*$)/g, '');
+        document.getElementById('list').value = trim;
+        return trim;
     };
 
-    $scope.updateSelection = function ($event, id) {
-        var checkbox = $event.target;
-        var action = (checkbox.checked ? 'add' : 'remove');
-        updateSelected(action, id);
+    $scope.allNeedsClicked = function () {
+        var newValue = !$scope.allNeedsMet();
+        _.each($scope.assetResults, function (item) {
+            item.chkbx = newValue;
+        });
     };
 
-    $scope.selectAll = function ($event) {
-        var checkbox = $event.target;
-        var action = (checkbox.checked ? 'add' : 'remove');
-        for (var i = 0; i < $scope.entities.length; i++) {
-            var entity = $scope.entities[i];
-            updateSelected(action, entity.id);
-        }
+    // Returns true if and only if all items are checked.
+    $scope.allNeedsMet = function () {
+        var needsMet = _.reduce($scope.assetResults, function (memo, item) {
+            return memo + (item.chkbx ? 1 : 0);
+        }, 0);
+
+        return (needsMet === $scope.assetResults.length);
     };
 
-    $scope.getSelectedClass = function (entity) {
-        return $scope.isSelected(entity.id) ? 'selected' : '';
-    };
-
-    $scope.isSelected = function (id) {
-        return $scope.selected.indexOf(id) >= 0;
-    };
-
-    //something extra I couldn't resist adding :)
-    $scope.isSelectedAll = function () {
-        return $scope.selected.length === $scope.entities.length;
-    };
 });
+
+

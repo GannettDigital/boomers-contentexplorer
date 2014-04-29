@@ -1,16 +1,18 @@
-﻿<!doctype html>
-<html lang="en" ng-app="mediaApp" xmlns="http://www.w3.org/1999/html">
+﻿<!DOCTYPE html>
+<html ng-app="assetApp">
+
 <head>
     <meta charset="utf-8">
     <title>Asset Mover</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/bootstrap.css">
 
-
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-resource.js"></script>
     <script src="lib/angular/angular-route.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+
+
+    <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap-tooltip.js"></script>
     <script src="js/bootstrap-popover.js"></script>
     <script src="js/app.js"></script>
@@ -20,7 +22,9 @@
     <script src="js/directives.js"></script>
 
 </head>
+<body>
+    <div ng-view></div>
 
-<div ng-view></div>
+</body>
 
 </html>
