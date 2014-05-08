@@ -1,7 +1,7 @@
 'use strict';
 
 /* Directives */
-mediaApp.directive('videoLoader', function(){
+assetApp.directive('videoLoader', function(){
     return function (scope, element, attrs){
         console.log(scope.url);
         scope.$watch("url",  function(newValue, oldValue){ //watching the scope url value
@@ -16,7 +16,7 @@ mediaApp.directive('videoLoader', function(){
     }
 });
 
-mediaApp.directive('showModal', function(){
+assetApp.directive('showModal', function(){
     return function (scope, element, attrs){
         scope.$watch("showFlag",  function(newValue, oldValue){
             console.log(newValue);
