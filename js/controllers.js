@@ -14,15 +14,14 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
     $scope.siteType = "6";
     $scope.agType = "6";
 
-
+   
 
     $scope.doSearch = function () {
         var type = $scope.assetType;
         var numrows = $scope.assetReturn;
         if ($scope.assetType === "all") type = "";
         assetService.get({
-            keyword: $scope.searchTerm, assettypename: type, propertyid: 1, rows: numrows, apiKey: 'special-key'
-        }, function (response) {
+            keyword: $scope.searchTerm, assettypename: type, propertyid: 1, rows: numrows, apiKey: 'special-key' }, function(response) {
             $scope.assetResults = response.results;
         });
     };
@@ -33,7 +32,7 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
         location.href = "http://localhost:53198/Handler.ashx?source=Search-" + ct;
 
     };
-
+    
     $scope.remaining = function () {
         var count = 0;
         angular.forEach($scope.assetResults, function (item) {
@@ -46,8 +45,8 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
     $scope.listtogaia = function () {
         var count = "";
         angular.forEach($scope.assetResults, function (item) {
-            if (item.chkbx ? 1 : 0)
-                count += item.assetId + ',';
+            if(item.chkbx ? 1 : 0)
+                count += item.assetId +',';
         });
         var trim = count.replace(/(^\s*,)|(,\s*$)/g, '');
         document.getElementById('list').value = trim;
@@ -56,6 +55,7 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
 
     $scope.allNeedsClicked = function () {
         var newValue = !$scope.allNeedsMet();
+
         _.each($scope.assetResults, function (item) {
             item.chkbx = newValue;
         });

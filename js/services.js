@@ -2,10 +2,12 @@
 
 
 /* Services */
-assetApp.factory('assetService', function ($resource) {
-
+assetApp.factory('assetService', function($resource) {
+    
     return $resource('http://relaunch-web-dev.usatoday.com:2093/Search/v4/assets', {});
 });
+
+
 
 assetApp.factory('GAIAService', function ($resource) {
 
