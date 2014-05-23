@@ -3,7 +3,7 @@
 
 
 /* App Module */
-var assetApp = angular.module('assetApp', ['ngResource', 'ngRoute', 'ui.bootstrap']);
+var assetApp = angular.module('assetApp', ['ngResource', 'ngRoute','ngGrid']);
  
  
 assetApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {

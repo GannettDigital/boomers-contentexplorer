@@ -2,7 +2,7 @@
 <div id="main" class="container-fluid">
     <table style="width:100%;">
         <tr>
-            <td><h2 id="hdr"><img id="tunesImg" src="/img/nowusm.png" width="140" height="60"> Asset Search</h2></td>
+            <td><h2 id="hdr"><img id="tunesImg" src="img/nowusm.png" width="140" height="60"> Asset Search</h2></td>
             <td>
                 <label>
                     Search Target
@@ -61,11 +61,11 @@
     <form id="myForm" class="form-inline form-search" style="padding-left: 10px">
         <label>
             Search for
-            <input id="in" type="text" ng-model="searchTerm" class="search-query input-xlarge" placeholder="Enter search term" required >
+            <input id="in" type="text" ng-model="searchTerm" class="search-query input-xlarge" placeholder="Enter search term">
         </label>
         <label>
             Asset Type
-            <select ng-model="assetType" class="input-small" required>
+            <select ng-model="assetType" class="input-small">
                 <option value="all">All</option>
                 <option value="image">Image</option>
                 <option value="video">Video</option>
@@ -76,14 +76,14 @@
         </label>
         <label>
             Return:
-            <select ng-model="assetReturn" class="input-small" required>
+            <select ng-model="assetReturn" class="input-small">
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
             </select>
         </label>
-        <button class="btn" ng-click="doSearch()" ng-disabled="!searchTerm"><i class="icon-search"></i> Search</button>&nbsp;
+        <button class="btn" ng-click="doSearch()"><i class="icon-search"></i> Search</button>&nbsp;
         <span id="qualifiers">
             <label>
                 <!--Sort by
@@ -102,11 +102,11 @@
         <tr>
             
             <td><span>{{ remaining() }} of {{ assetResults.length }} chosen</span></td>
-            <td><button class="btn" ng-click="UpLoad()" ng-disabled="!section" ><i class="icon-upload"></i> Upload to GAIA</button></td>
+            <td><button class="btn" ng-click="UpLoad()" ><i class="icon-upload"></i> Upload to GAIA</button></td>
             <td>
                 <label>
                     Section
-                    <select ng-model="section" class="input-medium" required>
+                    <select ng-model="section" class="input-medium">
                         <option value="connect">Connect</option>
                         <option value="learn">Learn</option>
                         <option value="nurture">Nurture</option>
@@ -138,16 +138,17 @@
         <tbody>
            
             <tr ng-repeat="item in assetResults | filter:q | orderBy:sortProp">
-                <td><input type="checkbox" name="fred" ng-model="item.chkbx"></td>
-                <td><a href="{{item.urls.longUrl}}" target="_blank">{{item.assetId}}</a></td>
-                <td>{{item.assetTypeName}}</td>
-                <td>{{item.headline}}</td>
-                <td>{{item.promoBrief}}</td>
-                <td>{{item.attribution.author}}</td>
-                <td>{{item.statusName}}</td>
-            </tr>
-            
+                    <td><input type="checkbox" name="fred" ng-model="item.chkbx"></td>
+                    <td><a href="{{item.urls.longUrl}}" target="_blank">{{item.assetId}}</a></td>
+                    <td>{{item.assetTypeName}}</td>
+                    <td>{{item.headline}}</td>
+                    <td>{{item.promoBrief}}</td>
+                    <td>{{item.attribution.author}}</td>
+                    <td>{{item.statusName}}</td>
+                    
+
+                </tr>
         </tbody>
     </table>
-    
+
 </div>
