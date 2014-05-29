@@ -31,7 +31,8 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
             $scope.assetResults = response.results;
         });
     };
-
+    //need to change envors on deploy
+    //DEV- local
     $scope.UpLoad = function () {
 
         var ct = document.getElementById('list').value;
@@ -39,6 +40,22 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
 
     };
     
+    //PROD 
+    //$scope.UpLoad = function () {
+
+    //    var ct = document.getElementById('list').value;
+    //    location.href = "http://54.84.143.40/ingest_prod/Handler.ashx?source=Search-" + $scope.section + "-" + ct;
+
+    //};
+
+    //stage
+    //$scope.UpLoad = function () {
+
+    //    var ct = document.getElementById('list').value;
+    //    location.href = "http://54.84.143.40/ingest_stage/Handler.ashx?source=Search-" + $scope.section + "-" + ct;
+
+    //};
+
     $scope.remaining = function () {
         var count = 0;
         angular.forEach($scope.assetResults, function (item) {
