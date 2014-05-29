@@ -1,10 +1,17 @@
 'use strict';
 
 
-/* Services */
+/* dev Services 
 assetApp.factory('assetService', function($resource) {
     
-    return $resource('http://relaunch-web-dev.usatoday.com:2093/Search/v4/assets', {});
+    return $resource('http://10.189.4.124/Search/v4/site/229/assets', {});
+});*/
+
+/* Prod Services internal*/
+assetApp.factory('assetService', function ($resource) {
+
+    return $resource('http://api.gannett-cdn.com/prod/Search/v4/site/229/assets', {});
+
 });
 
 

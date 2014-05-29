@@ -26,3 +26,5 @@ assetApp.directive('showModal', function(){
         }, true);
     }
 });
+
+

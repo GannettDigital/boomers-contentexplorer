@@ -13,15 +13,21 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
     $scope.propertyType = "6";
     $scope.siteType = "6";
     $scope.agType = "6";
+    $scope.section = "";
+    $scope.statusname = "published";
 
-   
+    $scope.btnSearchDisabled = true;
+
+    
 
     $scope.doSearch = function () {
         var type = $scope.assetType;
+        var statusname = $scope.statusname;
         var numrows = $scope.assetReturn;
         if ($scope.assetType === "all") type = "";
         assetService.get({
-            keyword: $scope.searchTerm, assettypename: type, propertyid: 1, rows: numrows, apiKey: 'special-key' }, function(response) {
+            keyword: $scope.searchTerm, assettypename: type, propertyid: 1, rows: numrows, statusname: statusname, apiKey: 'special-key', api_key: 'eywmgxp93u4cm6b85aa6s4td'
+        }, function (response) {
             $scope.assetResults = response.results;
         });
     };
@@ -29,7 +35,7 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
     $scope.UpLoad = function () {
 
         var ct = document.getElementById('list').value;
-        location.href = "http://localhost:53198/Handler.ashx?source=Search-" + ct;
+        location.href = "http://localhost:53198/Handler.ashx?source=Search-" + $scope.section + "-" + ct;
 
     };
     
@@ -70,6 +76,7 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
         return (needsMet === $scope.assetResults.length);
     };
 
+   
 });
 
 
