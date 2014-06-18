@@ -1,18 +1,19 @@
 'use strict';
 
 
-/* dev Services 
+/* dev Services */
 assetApp.factory('assetService', function($resource) {
     
-    return $resource('http://10.189.4.124/Search/v4/site/229/assets', {});
+    return $resource('http://10.189.4.124/Search/v4/assets', {});
+});
+
+/* Prod Services internal---new.../Search/v4/assets?sc=229&apiKey=special-key*/
+/*assetApp.factory('assetService', function ($resource) {
+
+    return $resource('http://api.gannett-cdn.com/prod/Search/v4/assets', {});
+
 });*/
 
-/* Prod Services internal*/
-assetApp.factory('assetService', function ($resource) {
-
-    return $resource('http://api.gannett-cdn.com/prod/Search/v4/site/229/assets', {});
-
-});
 
 
 
