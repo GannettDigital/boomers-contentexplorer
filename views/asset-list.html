@@ -2,7 +2,7 @@
 <div id="main" class="container-fluid">
     <table style="width:100%;">
         <tr>
-            <td><h2 id="hdr"><img id="tunesImg" src="/img/nowusm.png" width="140" height="60"> Asset Search</h2></td>
+            <td><h2 id="hdr"><img id="tunesImg" src="/static/contentexplorer/img/nowusm.png" width="140" height="60"> Asset Search</h2></td>
             <td>
                 <label>
                     Search Target
@@ -61,15 +61,17 @@
     <form id="myForm" class="form-inline form-search" style="padding-left: 10px">
         <label>
             Search for
-            <input id="in" type="text" ng-model="searchTerm" class="search-query input-xlarge" placeholder="Enter search term" required>
+            <input id="in" type="text" ng-model="searchTerm" class="search-query input-xlarge" placeholder="Enter search term" required >
         </label>
         <label>
             Asset Type
             <select ng-model="assetType" class="input-small" required>
                 <option value="all">All</option>
-                <option value="text">Text</option>
                 <option value="image">Image</option>
+                <option value="video">Video</option>
                 <option value="gallery">Gallery</option>
+                <option value="album">Album</option>
+                <option value="text">Text</option>
             </select>
         </label>
         <label>
@@ -81,7 +83,6 @@
                 <option value="100">100</option>
             </select>
         </label>
-        
         <button class="btn" ng-click="doSearch()" ng-disabled="!searchTerm"><i class="icon-search"></i> Search</button>&nbsp;
         <span id="qualifiers">
             <label>
@@ -99,8 +100,9 @@
     </form>
     <table>
         <tr>
+            
             <td><span>{{ remaining() }} of {{ assetResults.length }} chosen</span></td>
-            <td><button class="btn" ng-click="UpLoad()" ng-disabled="!section"><i class="icon-upload"></i> Upload to GAIA</button></td>
+            <td><button class="btn" ng-click="UpLoad()" ng-disabled="!section" ><i class="icon-upload"></i> Upload to GAIA</button></td>
             <td>
                 <label>
                     Section
@@ -115,20 +117,11 @@
                     </select>
                 </label>
             </td>
-            <td>
-                <label>
-                    Pub Status:
-                    <select ng-model="status" class="input-medium" required>
-                        <option value="Published">Published</option>
-                        <option value="Unpublished">Unpublished</option>
-                    </select>
-                </label>
-            </td>
             <td>{{listtogaia()}}<input type="hidden" name="list" id="list" value=""></td>
         </tr>
     </table>
-
-    <table id="resultsTbl" class="table table-striped" ng-controller="AssetListCtrl">
+    
+     <table id="resultsTbl" class="table table-striped" ng-controller="AssetListCtrl">
         <thead>
             <tr>
                 <th>
@@ -143,7 +136,7 @@
             </tr>
         </thead>
         <tbody>
-
+           
             <tr ng-repeat="item in assetResults | filter:q | orderBy:sortProp">
                 <td><input type="checkbox" name="fred" ng-model="item.chkbx"></td>
                 <td><a href="{{item.urls.longUrl}}" target="_blank">{{item.assetId}}</a></td>
@@ -153,8 +146,8 @@
                 <td>{{item.attribution.author}}</td>
                 <td>{{item.statusName}}</td>
             </tr>
-
+            
         </tbody>
     </table>
-
+    
 </div>
