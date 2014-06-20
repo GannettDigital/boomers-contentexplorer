@@ -36,7 +36,7 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
     $scope.UpLoad = function () {
 
         var ct = document.getElementById('list').value;
-        location.href = "http://54.84.143.40/Handler.ashx?source=Search" + "&vertical=" + $scope.section + "&status=" + $scope.status + "&list=" + ct;
+        location.href = "http://54.84.143.40/ingest_prod/Handler.ashx?source=Search" + "&vertical=" + $scope.section + "&status=" + $scope.status + "&list=" + ct;
 
     };
     
