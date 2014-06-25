@@ -26,7 +26,7 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
         var numrows = $scope.assetReturn;
         if ($scope.assetType === "all") type = "";
         assetService.get({
-            keyword: $scope.searchTerm, assettypename: type, propertyid: 1, rows: numrows, statusname: statusname, sc: 229, apiKey: 'special-key', api_key: 'eywmgxp93u4cm6b85aa6s4td'
+            keyword: $scope.searchTerm, assettypename: type, propertyid: 1, rows: numrows, statusid: 1, sc: 229, apiKey: 'special-key', api_key: 'eywmgxp93u4cm6b85aa6s4td'
         }, function (response) {
             $scope.assetResults = response.results;
         });
