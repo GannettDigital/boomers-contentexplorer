@@ -104,20 +104,20 @@ assetApp.controller('AssetListCtrl', function ($scope, assetService) {
     };
 
     /*prod*/
-    //$scope.UpLoad = function () {
-
-    //    var ct = document.getElementById('list').value;
-    //    location.href = "http://54.84.143.40/ingest_prod/Handler.ashx?source=Search" + "&vertical=" + $scope.section + "&status=" + $scope.status + "&list=" + ct;
-
-    //};
-    
-    /*dev*/
     $scope.UpLoad = function () {
 
         var ct = document.getElementById('list').value;
-        location.href = "http://localhost:53198/Handler.ashx?source=Search" + "&vertical=" + $scope.section + "&status=" + $scope.status + "&list=" + ct;
+        location.href = "http://54.84.143.40/ingest_prod/Handler.ashx?source=Search" + "&vertical=" + $scope.section + "&status=" + $scope.status + "&list=" + ct;
 
     };
+    
+    /*dev*/
+    //$scope.UpLoad = function () {
+
+    //    var ct = document.getElementById('list').value;
+    //    location.href = "http://localhost:53198/Handler.ashx?source=Search" + "&vertical=" + $scope.section + "&status=" + $scope.status + "&list=" + ct;
+
+    //};
 
     $scope.remaining = function () {
         var count = 0;
