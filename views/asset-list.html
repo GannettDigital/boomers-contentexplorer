@@ -6,13 +6,9 @@
             <td>
                 <label>
                     Search Target
-                    <select ng-model="searchType" class="input-medium">
+                    <select ng-model="searchTarget" class="input-medium">
                         <option value="1">USA Today</option>
-                        <option value="2">Indianapolis</option>
-                        <option value="3">Louisville</option>
-                        <option value="4">Nashville</option>
-                        <option value="5">Phoenix</option>
-                        <option value="6">NowU</option>
+                        <option value="189">NowU</option>
                     </select>
                 </label>
             </td>
@@ -21,11 +17,6 @@
                 <label>
                     Property
                     <select ng-model="propertyType" class="input-medium">
-                        <option value="1">USA Today</option>
-                        <option value="2">Indianapolis</option>
-                        <option value="3">Louisville</option>
-                        <option value="4">Nashville</option>
-                        <option value="5">Phoenix</option>
                         <option value="6">NowU</option>
                     </select>
                 </label>
@@ -34,11 +25,6 @@
                 <label>
                     Site
                     <select ng-model="siteType" class="input-medium">
-                        <option value="1">USA Today</option>
-                        <option value="2">Indianapolis</option>
-                        <option value="3">Louisville</option>
-                        <option value="4">Nashville</option>
-                        <option value="5">Phoenix</option>
                         <option value="6">NowU</option>
                     </select>
                 </label>
@@ -47,11 +33,6 @@
                 <label>
                     Asset Group
                     <select ng-model="agType" class="input-medium">
-                        <option value="1">USA Today</option>
-                        <option value="2">Indianapolis</option>
-                        <option value="3">Louisville</option>
-                        <option value="4">Nashville</option>
-                        <option value="5">Phoenix</option>
                         <option value="6">NowU</option>
                     </select>
                 </label>
@@ -61,22 +42,19 @@
     <form id="myForm" class="form-inline form-search" style="padding-left: 10px">
         <label>
             Search for
-            <input id="in" type="text" ng-model="searchTerm" class="search-query input-xlarge" placeholder="Enter search term" required >
+            <input id="in" type="text" ng-model="searchTerm" class="search-query input-xlarge" placeholder="Enter search term" required>
         </label>
         <label>
             Asset Type
             <select ng-model="assetType" class="input-small" required>
                 <option value="all">All</option>
                 <option value="image">Image</option>
-                <option value="video">Video</option>
-                <option value="gallery">Gallery</option>
-                <option value="album">Album</option>
                 <option value="text">Text</option>
             </select>
         </label>
         <label>
             Return:
-            <select ng-model="assetReturn" class="input-small" required>
+            <select ng-model="pageSize" class="input-small" required>
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
@@ -87,10 +65,10 @@
         <span id="qualifiers">
             <label>
                 <!--Sort by
-                <select ng-model="sortProp" class="input-medium" >
-                    <option value="assetTypeName">Asset Type</option>
-                    <option value="statusName">Publish Status</option>
-                </select>-->
+                    <select ng-model="sortProp" class="input-medium" >
+                        <option value="assetTypeName">Asset Type</option>
+                        <option value="statusName">Publish Status</option>
+                    </select>-->
             </label>
             <label>
                 Filter by
@@ -98,11 +76,20 @@
             </label>
         </span>
     </form>
+    <span>Total number of items {{ numberOfItems() }} </span><br />
+    <span><button type="button" class="btn btn-primary" ng-disabled="curPage == 0"
+        ng-click="searchDwn()">
+    &lt; PREV
+</button>
+    Page {{curPage + 1}} of {{ numberOfPages() }}
+        <button type="button" class="btn btn-primary" ng-disabled="curPage >= numberOfItems()/pageSize - 1"
+                ng-click="searchUp()">
+            NEXT &gt;
+        </button> </span>
     <table>
         <tr>
-            
             <td><span>{{ remaining() }} of {{ assetResults.length }} chosen</span></td>
-            <td><button class="btn" ng-click="UpLoad()" ng-disabled="!section" ><i class="icon-upload"></i> Upload to GAIA</button></td>
+            <td><button class="btn" ng-click="UpLoad()" ng-disabled="!section"><i class="icon-upload"></i> Upload to GAIA</button></td>
             <td>
                 <label>
                     Section
@@ -120,8 +107,8 @@
             <td>{{listtogaia()}}<input type="hidden" name="list" id="list" value=""></td>
         </tr>
     </table>
-    
-     <table id="resultsTbl" class="table table-striped" ng-controller="AssetListCtrl">
+
+    <table id="resultsTbl" class="table table-striped" ng-controller="AssetListCtrl">
         <thead>
             <tr>
                 <th>
@@ -136,7 +123,7 @@
             </tr>
         </thead>
         <tbody>
-           
+
             <tr ng-repeat="item in assetResults | filter:q | orderBy:sortProp">
                 <td><input type="checkbox" name="fred" ng-model="item.chkbx"></td>
                 <td><a href="{{item.urls.longUrl}}" target="_blank">{{item.assetId}}</a></td>
@@ -146,8 +133,8 @@
                 <td>{{item.attribution.author}}</td>
                 <td>{{item.statusName}}</td>
             </tr>
-            
+
         </tbody>
     </table>
-    
+
 </div>
