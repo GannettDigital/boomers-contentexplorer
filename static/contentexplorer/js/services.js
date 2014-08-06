@@ -19,7 +19,7 @@ assetApp.factory('assetService', function ($resource) {
 
 assetApp.factory('GAIAService', function ($resource) {
 
-    return $resource('http://54.84.143.40/ingest_prod/Handler.ashx?source=Search-', {});
+    return $resource('http://54.84.77.221/ingest_prod/Handler.ashx?source=Search-', {});
 });
 
 assetApp.factory('AMDPService', function ($resource) {
